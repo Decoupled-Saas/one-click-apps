@@ -1,4 +1,5 @@
 name: Publish One Click Apps
+permissions: write-all
 
 on:
   push:

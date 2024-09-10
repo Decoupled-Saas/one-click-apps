@@ -43,6 +43,10 @@ echo "#############################################"
 echo "######### Setting env vars"
 echo "#############################################"
 
+echo "#############################################"
+echo "######### ${GITHUB_TOKEN}"
+echo "#############################################"
+
 REMOTE_REPO="https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
 REPONAME="$(echo $GITHUB_REPOSITORY| cut -d'/' -f 2)"
 

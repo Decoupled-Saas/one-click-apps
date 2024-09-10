@@ -1,0 +1,45 @@
+captainVersion: 4
+services:
+    $$cap_appname-postgres:
+        image: postgres:$$cap_postgres_version
+        environment:
+            POSTGRES_DB: decoupled
+            POSTGRES_PASSWORD: $$cap_DB_PASS
+            POSTGRES_USER: decoupled
+        volumes:
+            - $$cap_appname-db-data:/var/lib/postgresql/data
+    $$cap_appname:
+        environment:
+            DB_TYPE: postgres
+            DB_HOST: srv-captain--$$cap_appname-postgres
+            DB_PORT: '5432'
+            DB_USER: decoupled
+            DB_PASS: $$cap_DB_PASS
+            DB_NAME: decoupled
+        image: requarks/wiki:$$cap_version
+        restart: always
+        caproverExtra:
+            containerHttpPort: '8080'
+caproverOneClickApp:
+    variables:
+        - label: Enterprise API Version
+          defaultValue: 'latest'
+          description: It's highly recommended that you use the latest tag
+          id: $$cap_version
+        - label: Postgres Version
+          defaultValue: 14.1-alpine
+          id: $$cap_postgres_version
+        - label: Database Password
+          description: Password to connect to the database
+          defaultValue: daTaBaSePaSsWorD
+          id: $$cap_DB_PASS
+    instructions:
+        end: >
+            Enterprise API is deployed and available as $$cap_appname. 
+
+            IMPORTANT: It will take up to 2 minutes for Enterprise API to be ready. Before that, you might see 502 error page.
+        start: Wiki.js is a fully open source, adaptable platform for building and running a Wiki.
+    displayName: decoupledsaas.com
+    isOfficial: true
+    description: The most powerful enterprise api
+    documentation: https://decoupledsaas.com/

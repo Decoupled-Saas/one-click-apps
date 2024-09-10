@@ -15,4 +15,4 @@ jobs:
           node-version: 20
       - run: npm install && npm run publish
         env:
-          GITHUB_PERSONAL_TOKEN: ${{secrets.GHT}}
+          GITHUB_TOKEN: ${{secrets.GHT}}

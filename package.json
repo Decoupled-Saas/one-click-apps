@@ -7,7 +7,7 @@
     "format:write": "prettier --write \"./public/**/*.{json,yml}\"",
     "build": "rimraf ./dist/ && mkdirp dist && node ./scripts/build.js",
     "validate": "node ./scripts/validate_apps.js",
-    "publish": "pnpm run build && ./scripts/publish-from-actions.sh"
+    "publish": "npm run build && ./scripts/publish-from-actions.sh"
   },
   "repository": {
     "type": "git",
